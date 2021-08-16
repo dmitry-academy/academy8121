@@ -21,7 +21,7 @@ public class ValidationDemo {
 		String password = null;
 		String confPass = null;
 		boolean conf = false;
-		 
+
 		try {
 			conf = isValid(login, password, confPass);
 			System.out.println(conf);
@@ -45,7 +45,7 @@ public class ValidationDemo {
 
 		Matcher matchLog = pattern.matcher(login);
 		Matcher matchPass = pattern.matcher(password);
-		
+
 		if (!matchLog.matches()) {
 			throw new WrongLoginException(
 					"Логин должен содержать латинские буквы, цифры и нижнее подчеркивание в количестве не больше 20");
