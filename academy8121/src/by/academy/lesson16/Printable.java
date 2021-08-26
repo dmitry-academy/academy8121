@@ -1,9 +1,9 @@
 package by.academy.lesson16;
 
 @FunctionalInterface
-public interface Searchable {
+public interface Printable {
 
-	boolean test(Car car);
+	void print(String p);
 
 	boolean equals(Object o);
 

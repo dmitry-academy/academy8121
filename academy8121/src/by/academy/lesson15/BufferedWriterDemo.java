@@ -6,7 +6,8 @@ import java.io.IOException;
 
 public class BufferedWriterDemo {
 	public static void main(String[] args) {
-		try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter("src\\io\\buffWriter.txt"))) {
+		try (FileWriter writer = new FileWriter("src\\io\\buffWriter.txt");
+				BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
 			String text = "Привет мир!";
 			bufferedWriter.write(text);
 			bufferedWriter.newLine();
