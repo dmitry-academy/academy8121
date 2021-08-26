@@ -31,7 +31,12 @@ public class FileCopy {
 				FileOutputStream fileOut = new FileOutputStream(outputFile)) {
 			int a;
 			while ((a = fileIn.read()) != -1) {
-				fileOut.write(a);
+				System.out.println((char) a);
+				if ((char) a == ' ') {
+					fileOut.write('_');
+				} else {
+					fileOut.write(a);
+				}
 			}
 		}
 	}

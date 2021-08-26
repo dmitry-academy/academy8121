@@ -6,19 +6,23 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class FileWriterReaderDemo {
-	public static void main(String[] args) {
-		char[] array = new char[50];
+	public static void main(String[] args) throws IOException {
 		int size = 0;
-		File file = new File("fileWrite.txt");
+		File file = new File("src\\io\\fileWrite.txt");
+		if (!file.exists()) {
+			file.createNewFile();
+		}
 		try (FileWriter fw = new FileWriter(file); FileReader fr = new FileReader(file)) {
 
 			fw.write("Learn\nJava!\n");
-			fw.flush();
 
-			System.out.println("Количество прочитанных символов: " + size + " ");
-			while (fr.read() != -1) {
-				System.out.println();
+			int i;
+			while ((i = fr.read()) != -1) {
+				System.out.println((char) i);
+				size++;
 			}
+			System.out.println("Количество прочитанных символов: " + size + " ");
+
 		} catch (IOException e) {
 			System.out.print(e.getMessage());
 		}

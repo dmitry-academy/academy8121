@@ -4,16 +4,22 @@ import java.util.Scanner;
 
 public class FinallyUse {
 	// Выход из метода через исключение
-	public static void procA() {
-		try(Scanner sc = new Scanner(System.in)) {
+	public static void procA() throws RuntimeException {
+		Scanner sc = new Scanner(System.in);
+
+		try {
+			int i = sc.nextInt();
 			System.out.println("Внутри procA");
 			throw new RuntimeException("demo");
-		} 
+
+		} finally {
+			sc.close();
+			System.out.println("procA and finally");
+		}
 	}
 
 	// Возврат изнутри try-блока
 	public static void procB() {
-
 		try {
 			System.out.println("Внутри procB");
 			return;
@@ -26,6 +32,7 @@ public class FinallyUse {
 	public static void procC() {
 		try {
 			System.out.println("Внутри procC");
+			System.exit(0);
 		} finally {
 			System.out.println("finally procC");
 		}
@@ -37,8 +44,10 @@ public class FinallyUse {
 //		} catch (Exception e) {
 //			System.out.println("Исключение выброшено");
 //		}
+
 //		procB();
 		procC();
-//		System.out.println("test");
+		System.out.println("test");
 	}
+
 }

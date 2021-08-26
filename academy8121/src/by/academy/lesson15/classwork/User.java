@@ -7,7 +7,7 @@ public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String login;
-	private String password;
+	private transient String password;
 
 	public User(String login, String password) {
 		super();

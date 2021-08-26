@@ -29,6 +29,7 @@ public class FinallyUse {
 		} finally {
 			System.out.println("finally procC");
 		}
+		System.out.println("конец метода для procC ");
 	}
 
 	public static void main(String[] args) {
@@ -38,7 +39,7 @@ public class FinallyUse {
 //			System.out.println("Исключение выброшено");
 //		}
 //		procB();
-//		System.out.println("method main");
+		System.out.println("method main");
 		procC();
 	}
 }

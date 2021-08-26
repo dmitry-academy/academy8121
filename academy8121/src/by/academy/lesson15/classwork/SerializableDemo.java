@@ -15,9 +15,10 @@ public class SerializableDemo {
 		User user = new User("SuperAdmin", "qwerty");
 		try (BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(
 				new FileOutputStream("src\\io\\user.txt"));
+
 				ObjectOutputStream osu = new ObjectOutputStream(bufferedOutputStream)) {
 			osu.writeObject(user);
-			osu.writeObject(new Integer(123));
+//			osu.writeObject(Integer.valueOf(123));
 
 		} catch (IOException ex) {
 			System.out.println(ex.getMessage());
@@ -25,10 +26,10 @@ public class SerializableDemo {
 
 		try (BufferedInputStream br = new BufferedInputStream(new FileInputStream("src\\io\\user.txt"));
 				ObjectInputStream isu = new ObjectInputStream(br)) {
-			Integer i = (Integer) isu.readObject();
+//			Integer i = (Integer) isu.readObject();
 			User user1 = (User) isu.readObject();
 			System.out.println(user1);
-			System.out.println(i);
+//			System.out.println(i);
 
 		} catch (IOException | ClassNotFoundException e) {
 			System.out.println(e.getMessage());
