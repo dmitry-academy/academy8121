@@ -29,7 +29,7 @@ public class Task6 {
 
 		Function<String, Boolean> function1 = Boolean::valueOf;
 		Function<String, Boolean> function2 = e -> Boolean.valueOf(e);
-
+ 
 		System.out.println(function1.apply("TRUE"));
 
 		Integer integer = 5;
