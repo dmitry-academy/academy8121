@@ -3,6 +3,8 @@ package by.academy.lesson7.oop;
 public class ColorBox extends Box {
 	String color;
 
+	double width;
+	
 	public ColorBox(int width, int height, int depth, String color) {
 		this.width = width;
 		this.height = height;
@@ -11,5 +13,10 @@ public class ColorBox extends Box {
 	}
 
 	public ColorBox() {
+	}
+
+	@Override
+	public void print() {
+		System.out.println("ColorBox print" + width);
 	}
 }

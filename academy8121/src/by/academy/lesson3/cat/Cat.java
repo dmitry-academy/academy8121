@@ -3,6 +3,7 @@ package by.academy.lesson3.cat;
 public class Cat {
 	int age;
 	String nickname;
+	public String serialNumber = "cat";
 
 	public Cat() {
 		super();

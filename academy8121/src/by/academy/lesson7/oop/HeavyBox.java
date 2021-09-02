@@ -14,6 +14,11 @@ public class HeavyBox extends Box implements Comparable<HeavyBox> {
 		this.weight = weight;
 	}
 
+	@Override
+	public void print() {
+		System.out.println("HeavyBox print");
+	}
+
 	public void printSomething() {
 		System.out.println("Something!");
 	}

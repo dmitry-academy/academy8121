@@ -12,6 +12,14 @@ public class Box {
 		depth = 10;
 	}
 
+	public void test() {
+		print();
+	}
+
+	public void print() {
+		System.out.println("Box print" + width);
+	}
+
 	Box(double depth, double height) {
 		this();
 		this.getVolume();
