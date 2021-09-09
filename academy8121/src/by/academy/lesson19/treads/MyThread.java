@@ -1,19 +1,17 @@
 package by.academy.lesson19.treads;
 
-public class MyRunnableImpl implements Runnable {
+public class MyThread extends Thread {
 
 	@Override
 	public void run() {
 		for (int i = 0; i < 10; i++) {
 			try {
-				Thread.sleep(100);
+				sleep(100);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			System.out.println("RunnableCounter: " + i);
-//			MultithreadingDemo.incrementCounter();
+			System.out.println("ThreadCounter: " + i);
 		}
 	}
-
 }

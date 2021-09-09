@@ -6,10 +6,10 @@ public class DeamonDemo {
 		DaemonThread t1 = new DaemonThread("t1");
 		DaemonThread t2 = new DaemonThread("t2");
 		DaemonThread t3 = new DaemonThread("t3");
-
+//
 		WhileThread whileThread = new WhileThread("t4");
 		whileThread.setDaemon(true);
-		whileThread.setPriority(10);
+//		whileThread.setPriority(10);
 		whileThread.start();
 		// Setting user thread t1 to Daemon
 

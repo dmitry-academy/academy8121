@@ -9,7 +9,7 @@ public class DaemonThread extends Thread {
 	@Override
 	public void run() {
 		// Checking whether the thread is Daemon or not
-		System.out.println("Daemon started: " + getName());
+		System.out.println("Thread started: " + getName());
 
 		try {
 			Thread.sleep(3000);
@@ -18,9 +18,7 @@ public class DaemonThread extends Thread {
 		}
 		if (Thread.currentThread().isDaemon()) {
 			System.out.println(getName() + " is Daemon thread");
-		}
-
-		else {
+		} else {
 			System.out.println(getName() + " is User thread");
 		}
 
