@@ -1,0 +1,59 @@
+package by.academy.lesson20.classwork;
+
+public class Ship implements Runnable {
+
+	private static final int FULL_CAPACITY = 5;
+	private Port port;
+	private int numberContainers;
+	private boolean isUnloading;
+
+	public Ship(Port port, int numberContainers, boolean isLoading) {
+		super();
+		this.port = port;
+		this.numberContainers = numberContainers;
+		this.isUnloading = isLoading;
+	}
+
+	@Override
+	public void run() {
+		if (isUnloading) {
+			while (numberContainers > 0) {
+				Dock dock = port.takeDock();
+				innerLoop: for (int i = 0; i < FULL_CAPACITY; i++) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					if (dock.load() && numberContainers - 1 >= 0) {
+						numberContainers--;
+						System.out.println("Товар успешно загружен на склад. Осталось загрузить: " + numberContainers);
+					} else {
+						break innerLoop;
+					}
+				}
+				port.leaveDock(dock);
+			}
+		} else {
+			while (numberContainers < FULL_CAPACITY) {
+				Dock dock = port.takeDock();
+				innerLoop: for (int i = 0; i < FULL_CAPACITY; i++) {
+					try {
+						Thread.sleep(1000);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					if (dock.unload() && numberContainers + 1 <= FULL_CAPACITY) {
+						numberContainers++;
+						System.out
+								.println("Товар успешно разгружен со склада. Осталось разгрузить: " + numberContainers);
+					} else {
+						break innerLoop;
+					}
+				}
+				port.leaveDock(dock);
+			}
+		}
+	}
+
+}
