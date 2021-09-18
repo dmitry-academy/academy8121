@@ -19,13 +19,13 @@ public class Ship implements Runnable {
 		if (isUnloading) {
 			while (numberContainers > 0) {
 				Dock dock = port.takeDock();
-				innerLoop: for (int i = 0; i < FULL_CAPACITY; i++) {
+				innerLoop: for (int i = 0; i < numberContainers; i++) {
 					try {
 						Thread.sleep(1000);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
-					if (dock.load() && numberContainers - 1 >= 0) {
+					if (dock.load()) {
 						numberContainers--;
 						System.out.println("Товар успешно загружен на склад. Осталось загрузить: " + numberContainers);
 					} else {
@@ -39,7 +39,7 @@ public class Ship implements Runnable {
 				Dock dock = port.takeDock();
 				innerLoop: for (int i = 0; i < FULL_CAPACITY; i++) {
 					try {
-						Thread.sleep(1000);
+						Thread.sleep(500);
 					} catch (InterruptedException e) {
 						e.printStackTrace();
 					}
@@ -54,6 +54,17 @@ public class Ship implements Runnable {
 				port.leaveDock(dock);
 			}
 		}
+	}
+
+	@Override
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Ship [numberContainers=");
+		builder.append(numberContainers);
+		builder.append(", isUnloading=");
+		builder.append(isUnloading);
+		builder.append("]");
+		return builder.toString();
 	}
 
 }

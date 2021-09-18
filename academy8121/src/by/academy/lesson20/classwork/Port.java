@@ -17,7 +17,7 @@ public class Port {
 
 		while (dock == null) {
 			try {
-				wait(1000);
+				wait();
 				System.out.println("Ждем свободный причал");
 			} catch (InterruptedException e) {
 				e.printStackTrace();
