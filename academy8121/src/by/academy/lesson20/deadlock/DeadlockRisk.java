@@ -8,9 +8,9 @@ public class DeadlockRisk implements Runnable {
 	private final Resource paper = new Resource();
 
 	public void doSun() {
-		synchronized (scissors) { // May deadlock here
+		synchronized (paper) { // May deadlock here
 			System.out.println(Thread.currentThread().getName() + " взяла ножницы для вырезания солнышка");
-			synchronized (paper) {
+			synchronized (scissors) {
 				System.out.println(Thread.currentThread().getName() + " взяла бумагу для вырезания солнышка");
 				System.out.println(Thread.currentThread().getName() + " вырезает солнышко");
 			}

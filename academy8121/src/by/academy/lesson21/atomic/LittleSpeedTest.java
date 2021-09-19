@@ -7,7 +7,8 @@ import java.util.concurrent.atomic.AtomicLong;
 public class LittleSpeedTest implements Runnable {
 	private static volatile int var1 = 0;
 	private static AtomicInteger var2 = new AtomicInteger(0);
-	private static final int LOOP_COUNT = 10000000;
+	private static final int LOOP_COUNT = 10_000_000;
+//	private static final int LOOP_COUNT = 1_000_000;
 	private static AtomicLong volatileTime = new AtomicLong(0);
 	private static AtomicLong atomicTime = new AtomicLong(0);
 

@@ -24,12 +24,15 @@ public class Philosopher implements Runnable {
 				doAction(System.nanoTime() + ": Thinking");
 				synchronized (leftFork) {
 					doAction(System.nanoTime() + ": Picked up left fork");
+
+					wait(1000);
 					synchronized (rightFork) {
+						wait(1000);
 						// eating
 						doAction(System.nanoTime() + ": Picked up right fork - eating");
 						doAction(System.nanoTime() + ": Put down right fork");
-					}
 
+					}
 					// Back to thinking
 					doAction(System.nanoTime() + ": Put down left fork. Back to thinking");
 				}

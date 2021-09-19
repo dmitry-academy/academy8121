@@ -17,42 +17,49 @@ public class Ship implements Runnable {
 	@Override
 	public void run() {
 		if (isUnloading) {
-			while (numberContainers > 0) {
-				Dock dock = port.takeDock();
-				innerLoop: for (int i = 0; i < numberContainers; i++) {
-					try {
-						Thread.sleep(1000);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					if (dock.load()) {
-						numberContainers--;
-						System.out.println("Товар успешно загружен на склад. Осталось загрузить: " + numberContainers);
-					} else {
-						break innerLoop;
-					}
-				}
-				port.leaveDock(dock);
-			}
+			unload();
 		} else {
-			while (numberContainers < FULL_CAPACITY) {
-				Dock dock = port.takeDock();
-				innerLoop: for (int i = 0; i < FULL_CAPACITY; i++) {
-					try {
-						Thread.sleep(500);
-					} catch (InterruptedException e) {
-						e.printStackTrace();
-					}
-					if (dock.unload() && numberContainers + 1 <= FULL_CAPACITY) {
-						numberContainers++;
-						System.out
-								.println("Товар успешно разгружен со склада. Осталось разгрузить: " + numberContainers);
-					} else {
-						break innerLoop;
-					}
+			load();
+		}
+	}
+
+	private void load() {
+		while (numberContainers < FULL_CAPACITY) {
+			Dock dock = port.takeDock();
+			innerLoop: for (int i = 0; i < FULL_CAPACITY; i++) {
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
 				}
-				port.leaveDock(dock);
+				if (dock.unload() && numberContainers + 1 <= FULL_CAPACITY) {
+					numberContainers++;
+					System.out.println("Товар успешно разгружен со склада. Осталось разгрузить: " + numberContainers);
+				} else {
+					break innerLoop;
+				}
 			}
+			port.leaveDock(dock);
+		}
+	}
+
+	private void unload() {
+		while (numberContainers > 0) {
+			Dock dock = port.takeDock();
+			innerLoop: for (int i = 0; i < numberContainers; i++) {
+				try {
+					Thread.sleep(500);
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+				if (dock.load()) {
+					numberContainers--;
+					System.out.println("Товар успешно загружен на склад. Осталось загрузить: " + numberContainers);
+				} else {
+					break innerLoop;
+				}
+			}
+			port.leaveDock(dock);
 		}
 	}
 
